@@ -24,6 +24,9 @@
 			"module": "Waterdeep-City-of-Splendors"
 		}
 	],
+	"esmodules": [
+		"./scripts/init.js"
+	],
 	"dependencies": [
 		{
 			"name": "scene-packer",
