@@ -45,7 +45,7 @@
    * Set to the following to disable:
    *   const journalPacks = [];
    */
-  const journalPacks = ["waterdeep-city-of-splendors.journals"];
+  const journalPacks = ["Waterdeep-City-of-Splendors.journals"];
   
   /**
    * macroPacks is a list of compendium packs to look in for Macros by name (in prioritised order).
