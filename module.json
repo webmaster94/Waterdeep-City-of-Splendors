@@ -1,42 +1,41 @@
 {
-  "name": "waterdeep-city-of-splendors",
-  "title": "Waterdeep - City of Splendors",
-  "description": "A full Waterdeep map with all locations as presented by https://www.aidedd.org/",
-  "version": "1.0.0",
-  "minimumCoreVersion": "0.7.9",
-  "compatibleCoreVersion": "0.8.9",
-  "author": "Gage Eakins",
-  "authors": [
-    {
-      "name": "Gage Eakins"
-    }
-  ],
-  "packs": [
-    {
-      "name": "maps",
-      "label": "Waterdeep - City of Splendors",
-      "path": "/packs/maps.db",
-      "entity": "Scene"
-    },
-    {
-      "name": "journals",
-      "label": "Waterdeep - City of Splendors",
-      "path": "/packs/journals.db",
-      "entity": "JournalEntry"
-    }
-  ],
-  "esmodules": [
-    "./scripts/init.js"
-  ],
-  "dependencies": [
-    {
-      "name": "scene-packer",
-      "manifest": "https://github.com/League-of-Foundry-Developers/scene-packer/releases/latest/download/module.json",
-      "type": "module"
-    }
-  ],
-  "url": "",
-  "manifest": "",
-  "download": "",
-  "manifestPlusVersion": "1.2.0"
+	"name": "Waterdeep-City-of-Splendors",
+	"title": "Waterdeep - City of Splendors",
+	"description": "A full Waterdeep map with all locations as presented by https://www.aidedd.org/",
+	"version": "1.0.0",
+	"minimumCoreVersion": "0.8.9",
+	"compatibleCoreVersion": "0.8.9",
+	"author": "Gage Eakins",
+	"packs": [
+		{
+			"name": "maps",
+			"label": "Waterdeep - City of Splendors",
+			"path": "/packs/maps.db",
+			"entity": "Scene",
+			"system": "dnd5e",
+			"module": "Waterdeep-City-of-Splendors"
+		},
+		{
+			"name": "journals",
+			"label": "Waterdeep - City of Splendors",
+			"path": "/packs/journals.db",
+			"entity": "JournalEntry",
+			"system": "dnd5e",
+			"module": "Waterdeep-City-of-Splendors"
+		}
+	],
+	"dependencies": [
+		{
+			"name": "scene-packer",
+			"manifest": "https://github.com/League-of-Foundry-Developers/scene-packer/releases/latest/download/module.json",
+			"type": "module"
+		}
+		{
+			"name": "compendium-folders",
+			"type": "module"
+		}
+	],
+	"url": "https://github.com/webmaster94/Waterdeep-City-of-Splendors",
+	"manifest": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/latest/download/module.json",
+	"download": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/download/v1.1.1/Waterdeep-City-of-Splendors.zip",
 }

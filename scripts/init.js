@@ -1,6 +1,6 @@
 (() => {
   const adventureName = 'Waterdeep - City of Splendors';
-  const moduleName = 'waterdeep-city-of-splendors';
+  const moduleName = 'Waterdeep-City-of-Splendors';
 
   /**
    * welcomeJournal (if set) will automatically be imported and opened after the first activation of a
@@ -11,6 +11,7 @@
    *   const welcomeJournal = '';
    */
   const welcomeJournal = '';
+  
   /**
    * additionalJournals will automatically be imported. This is a list of Journals by name that should
    * also be imported.
@@ -18,12 +19,14 @@
    *   const additionalJournals = [];
    */
   const additionalJournals = [];
+  
   /**
    * additionalMacros will automatically be imported. Each name must match exactly and are case sensitive.
    * Set to the following to disable:
    *   const additionalMacros = [];
    */
   const additionalMacros = [];
+  
   /**
    * creaturePacks is a list of compendium packs to look in for Actors by name (in prioritised order).
    * If the creature is not found in the first pack, it will search through each subsequent pack.
@@ -35,6 +38,7 @@
    *   const creaturePacks = [];
    */
   const creaturePacks = [];
+  
   /**
    * journalPacks is a list of compendium packs to look in for Journals by name (in prioritised order).
    * The first entry here assumes that you have a Journal pack in your module with the "name" of "journals".
@@ -42,6 +46,7 @@
    *   const journalPacks = [];
    */
   const journalPacks = ["waterdeep-city-of-splendors.journals"];
+  
   /**
    * macroPacks is a list of compendium packs to look in for Macros by name (in prioritised order).
    * The first entry here assumes that you have a Macro pack in your module with the "name" of "macros".
@@ -49,6 +54,7 @@
    *   const macroPacks = [];
    */
   const macroPacks = [];
+  
   /**
    * playlistPacks is a list of compendium packs to look in for Playlists by name (in prioritised order).
    * The first entry here assumes that you have a Playlist pack in your module with the "name" of "playlists".
@@ -56,6 +62,7 @@
    *   const playlistPacks = [];
    */
   const playlistPacks = [];
+  
   /**
    * additionalModulePacks is a list of modules whose compendium packs can be looked in for entities by name (in prioritised order).
    * Enter just the "name" of the module/s or system/s you want to be considered.
