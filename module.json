@@ -1,0 +1,42 @@
+{
+  "name": "waterdeep-city-of-splendors",
+  "title": "Waterdeep - City of Splendors",
+  "description": "A full Waterdeep map with all locations as presented by https://www.aidedd.org/",
+  "version": "1.0.0",
+  "minimumCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.8.9",
+  "author": "Gage Eakins",
+  "authors": [
+    {
+      "name": "Gage Eakins"
+    }
+  ],
+  "packs": [
+    {
+      "name": "maps",
+      "label": "Waterdeep - City of Splendors",
+      "path": "/packs/maps.db",
+      "entity": "Scene"
+    },
+    {
+      "name": "journals",
+      "label": "Waterdeep - City of Splendors",
+      "path": "/packs/journals.db",
+      "entity": "JournalEntry"
+    }
+  ],
+  "esmodules": [
+    "./scripts/init.js"
+  ],
+  "dependencies": [
+    {
+      "name": "scene-packer",
+      "manifest": "https://github.com/League-of-Foundry-Developers/scene-packer/releases/latest/download/module.json",
+      "type": "module"
+    }
+  ],
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "manifestPlusVersion": "1.2.0"
+}
