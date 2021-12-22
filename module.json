@@ -27,9 +27,8 @@
 	"dependencies": [
 		{
 			"name": "scene-packer",
-			"manifest": "https://github.com/League-of-Foundry-Developers/scene-packer/releases/latest/download/module.json",
 			"type": "module"
-		}
+		},
 		{
 			"name": "compendium-folders",
 			"type": "module"
@@ -37,5 +36,5 @@
 	],
 	"url": "https://github.com/webmaster94/Waterdeep-City-of-Splendors",
 	"manifest": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/latest/download/module.json",
-	"download": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/download/v1.1.1/Waterdeep-City-of-Splendors.zip",
+	"download": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/download/v1.1.1/Waterdeep-City-of-Splendors.zip"
 }
