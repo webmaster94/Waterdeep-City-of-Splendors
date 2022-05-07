@@ -4,7 +4,7 @@
 	"description": "A full Waterdeep map with all locations as presented by https://www.aidedd.org/",
 	"version": "1.0.0",
 	"minimumCoreVersion": "0.8.9",
-	"compatibleCoreVersion": "0.8.9",
+	"compatibleCoreVersion": "9",
 	"author": "Gage Eakins",
 	"packs": [
 		{
