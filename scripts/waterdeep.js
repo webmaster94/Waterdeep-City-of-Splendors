@@ -23,7 +23,7 @@ const addData = async function(folder, icon, data) {
     });
 
     Promise.all(noteData).then(noteDataResolved => {
-        canvas.notes.createMany(noteDataResolved);  
+        canvas.scene.createEmbeddedDocuments("Note", noteDataResolved);  
     });
 };
 
