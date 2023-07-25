@@ -18,7 +18,6 @@
 			"label": "Waterdeep - City of Splendors",
 			"path": "/packs/maps.db",
 			"type": "Scene",
-			"system": "dnd5e",
 			"module": "Waterdeep-City-of-Splendors"
 		},
 		{
@@ -26,7 +25,6 @@
 			"label": "Waterdeep - City of Splendors",
 			"path": "/packs/journals.db",
 			"type": "JournalEntry",
-			"system": "dnd5e",
 			"module": "Waterdeep-City-of-Splendors"
 		}
 	],
