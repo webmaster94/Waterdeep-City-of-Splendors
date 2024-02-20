@@ -37,11 +37,6 @@
 				"id": "scene-packer",
 				"type": "module",
 				"manifest": "https://github.com/League-of-Foundry-Developers/scene-packer/releases/latest/download/module.json"
-			},
-			{
-				"id": "compendium-folders",
-				"type": "module",
-				"manifest": "https://raw.githubusercontent.com/earlSt1/vtt-compendium-folders/10x-update/module.json"
 			}
 		]
 	},	
