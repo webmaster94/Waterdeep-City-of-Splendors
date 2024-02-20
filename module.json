@@ -1,11 +1,11 @@
 {
-	"name": "Waterdeep-City-of-Splendors",
+	"id": "Waterdeep-City-of-Splendors",
 	"title": "Waterdeep - City of Splendors",
 	"description": "A full Waterdeep map with all locations as presented by https://www.aidedd.org/",
 	"version": "1.4.1",
 	"compatibility": {
-		"minimum": "0.8.9",
-		"verified": "10.288"
+		"minimum": "11",
+		"verified": "11"
 	},
 	"authors": [
 		{
@@ -16,14 +16,14 @@
 		{
 			"name": "maps",
 			"label": "Waterdeep - City of Splendors",
-			"path": "/packs/maps.db",
+			"path": "/packs/maps",
 			"type": "Scene",
 			"module": "Waterdeep-City-of-Splendors"
 		},
 		{
 			"name": "journals",
 			"label": "Waterdeep - City of Splendors",
-			"path": "/packs/journals.db",
+			"path": "/packs/journals",
 			"type": "JournalEntry",
 			"module": "Waterdeep-City-of-Splendors"
 		}
