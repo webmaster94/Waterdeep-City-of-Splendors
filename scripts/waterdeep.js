@@ -1,47 +1,3 @@
-const addData = async function(folder, icon, data) {
-    const noteData = await data.map(async (interactiveMapData) => {
-        const newJournalEntry = await JournalEntry.create({
-            name: interactiveMapData.name,
-            folder: folder,
-            content: interactiveMapData.txt
-        });
-
-        return {
-          entryId: newJournalEntry.id,
-          // The D&D beyond map encompasses more area than the interactive one, so it needs the constant 1140/1163 to help position
-          // Additionally, and I'm not sure why, there's some sort of distortion that necessitates the 0.98 multiplier
-          x: (interactiveMapData.x * 0.98) + 1140,
-          y: (interactiveMapData.y * 0.98) + 1163,
-          icon: icon,
-          iconSize: 32,
-
-          // text: "A custom label",
-          fontSize: 20,
-          textAnchor: CONST.TEXT_ANCHOR_POINTS.CENTER,
-          // textColor: "#00FFFF"
-        };
-    });
-
-    Promise.all(noteData).then(noteDataResolved => {
-        canvas.scene.createEmbeddedDocuments("Note", noteDataResolved);  
-    });
-};
-
-//utility to get my existing folder names + IDs
-//game.folders.forEach((value) => {
-//console.log(value.data.name + " " + value.data._id)
-//})
-
-var cityBuildings_folder = "BSRCnekBiuotLUiD";
-var innsTaverns_folder = "oiJK7h4YmZaASLeO";
-var temples_folder = "Pl1TX54vbwIGMtmg";
-var guildhalls_folder = "NAc1jkF8EwXziF1g";
-var businesses_folder = "SUp2U0HEcBRwygME";
-var warehouses_folder = "aODCweHDA3yh7ggi";
-var nobleVillas_folder = "42ZVtkZiEtgt8iQ8";
-var placesAndStreets_folder = "W4kLtskP9VKpsCiy";
-var misc_folder = "XQtQU6yjEqXsjs65";
-
 var cityBuildings = [
 	{ name:"Castle Waterdeep", color:"#58ACFA", x:1781, y:4238, txt:"<p>Thick-walled stronghold that broods over Castle Ward from the flanks of <strong><em>Mount Waterdeep</em></strong>. Pennants and banners are often hung and flown from its battlements to signal the arrival of diplomats or the commencement of ceremonies.</p>", ref:"C76"},
 	{ name:"Piergeiron's Palace", color:"#58ACFA", x:1136, y:3918, txt:"<p>White marble Palace and main office location for many city officials, the majority of which are dedicated to the administration of city services, such as the Watch, the Guard, city clerks, and the Loyal Order of Street Laborers. The ruler of the city - the Open Lord of Waterdeep - resides and works here.</p>", ref:"C75"},
@@ -556,12 +512,152 @@ var misc = [
 	{ name:"Thantilvur Investments", color:"#AAAAAA", x:2173, y:2462, txt:"<p>A former wealthy citizens private mansion, recently renovated, secret hideout for the Masked Lord Cozandur. Was destroyed durind the Open Lord's spell duel with two mages on the payroll of Braethan Cazondur.</p>"},
 ];
 
-await addData(cityBuildings_folder, "icons/svg/castle.svg", cityBuildings);
-//await addData(innsTaverns_folder, "icons/svg/tankard.svg", innsTaverns);
-//await addData(temples_folder, "icons/svg/temple.svg", temples);
-//await addData(guildhalls_folder, "icons/svg/chest.svg", guildHalls);
-//await addData(businesses_folder, "icons/svg/hanging-sign.svg", businesses);
-//await addData(warehouses_folder, "icons/svg/barrel.svg", warehouses);
-//await addData(nobleVillas_folder, "icons/svg/house.svg", nobleVillas);
-//await addData(placesAndStreets_folder, "icons/svg/bridge.svg", placesAndStreets);
-//await addData(misc_folder, "icons/svg/city.svg", misc);
+// // Function to find a folder ID based on the folder name
+// function findFolderIdByName(folderName) {
+//     console.log("Searching for folder:", folderName);
+
+//     // Search through all folders in the game
+//     const folder = game.folders.find(f => f.name === folderName);
+
+//     if (folder) {
+//         console.log("Folder found:", folder.name, "with ID:", folder.id);
+//         return folder.id;
+//     } else {
+//         console.log("Folder not found:", folderName);
+//         return null;  // Return null if the folder isn't found
+//     }
+// }
+
+// function printFolders() {
+// 	const folders = game.folders;
+
+// 	folders.forEach(folder => {
+// 		console.log(`Folder Name: ${folder.name}, ID: ${folder.id}`);
+// 	});
+// }
+
+function getFolderIdsByNames(folderNames) {
+    console.log("Matching folder names:", folderNames);
+
+    // Filter folders that match any name in the folderNames array
+    const matchedFolders = game.folders
+        .filter(folder => folderNames.includes(folder.name))
+        .map(folder => {
+            return { name: folder.name, id: folder.id };
+        });
+
+    console.log("Matched folder array:", matchedFolders);
+    return matchedFolders;
+}
+
+function getIdByName(name, foldersArray) {
+    const folder = foldersArray.find(folder => folder.name === name);
+    return folder ? folder.id : null;  // Returns null if no folder with the name is found
+}
+
+async function addData(folderId, icon, data) {
+    console.log("Adding data to folder:", folderId);
+
+    for (const interactiveMapData of data) {
+        console.log("Processing entry:", interactiveMapData.name);
+
+        // Check if the journal entry already exists
+        const existingEntry = game.journal.contents.find(entry => entry.name === interactiveMapData.name);
+        console.log("Checking existing journal entry:", game.journal.contents);
+
+        if (existingEntry) {
+            console.log("Found existing journal entry:", existingEntry.name);
+
+            // Check if the page already exists in the journal entry
+            const existingPage = existingEntry.pages.find(page => page.name === interactiveMapData.name);
+
+            if (existingPage) {
+                // If the page exists, update the content
+                console.log("Updating existing page:", existingPage.name);
+                await existingPage.update({
+                    text: {
+                        content: interactiveMapData.txt,
+                        format: CONST.JOURNAL_ENTRY_PAGE_FORMATS.HTML
+                    }
+                });
+            } else {
+                // If the page doesn't exist, add it
+                console.log("Adding new page to existing entry:", interactiveMapData.name);
+                await existingEntry.createEmbeddedDocuments("JournalEntryPage", [{
+                    name: interactiveMapData.name,
+                    type: "text",
+                    text: {
+                        content: interactiveMapData.txt,
+                        format: CONST.JOURNAL_ENTRY_PAGE_FORMATS.HTML
+                    }
+                }]);
+            }
+        } else {
+            // If the journal entry doesn't exist, create a new one
+            console.log("Creating new journal entry for:", interactiveMapData.name);
+            await JournalEntry.create({
+                name: interactiveMapData.name,
+                folder: folderId,
+                pages: [{
+                    name: interactiveMapData.name,
+                    type: "text",
+                    text: {
+                        content: interactiveMapData.txt,
+                        format: CONST.JOURNAL_ENTRY_PAGE_FORMATS.HTML
+                    }
+                }]
+            });
+        }
+    }
+
+    console.log("Data added/updated successfully in folder:", folderId);
+}
+
+
+Hooks.on("canvasReady", async () => {
+    console.log("Foundry VTT is ready, running setup...");
+
+    try {
+        const folderNames = [
+            "City Buildings",
+            "Inns & Taverns",
+            "Temples",
+            "Guildhalls",
+            "Businesses",
+            "Warehouses",
+            "Noble Villas",
+            "Places & Streets",
+            "Misc"
+        ];
+
+        const foldersArray = getFolderIdsByNames(folderNames);
+        console.log("Folder IDs retrieved:", foldersArray);
+
+        const dataMap = {
+            "City Buildings": { icon: "icons/svg/castle.svg", data: cityBuildings },
+            "Inns & Taverns": { icon: "icons/svg/tankard.svg", data: innsTaverns },
+            "Temples": { icon: "icons/svg/temple.svg", data: temples },
+            "Guildhalls": { icon: "icons/svg/chest.svg", data: guildHalls },
+            "Businesses": { icon: "icons/svg/hanging-sign.svg", data: businesses },
+            "Warehouses": { icon: "icons/svg/barrel.svg", data: warehouses },
+            "Noble Villas": { icon: "icons/svg/house.svg", data: nobleVillas },
+            "Places & Streets": { icon: "icons/svg/bridge.svg", data: placesAndStreets },
+            "Misc": { icon: "icons/svg/city.svg", data: misc }
+        };
+
+        // Iterate over each folder and add/update corresponding data
+        for (const folderName of folderNames) {
+            const folderId = getIdByName(folderName, foldersArray);
+            if (folderId) {
+                const { icon, data } = dataMap[folderName];
+                await addData(folderId, icon, data);
+            } else {
+                console.warn(`Folder '${folderName}' not found in the foldersArray.`);
+            }
+        }
+
+        console.log("Setup completed successfully.");
+    } catch (error) {
+        console.error("Error during setup:", error);
+    }
+});

@@ -1,46 +1,47 @@
 {
-	"id": "Waterdeep-City-of-Splendors",
-	"title": "Waterdeep - City of Splendors",
-	"description": "A full Waterdeep map with all locations as presented by https://www.aidedd.org/",
-	"version": "1.4.1",
-	"compatibility": {
-		"minimum": "11",
-		"verified": "11"
-	},
-	"authors": [
-		{
-			"name": "Gage Eakins"
-		}
-	],
-	"packs": [
-		{
-			"name": "maps",
-			"label": "Waterdeep - City of Splendors",
-			"path": "/packs/maps",
-			"type": "Scene",
-			"module": "Waterdeep-City-of-Splendors"
-		},
-		{
-			"name": "journals",
-			"label": "Waterdeep - City of Splendors",
-			"path": "/packs/journals",
-			"type": "JournalEntry",
-			"module": "Waterdeep-City-of-Splendors"
-		}
-	],
-	"esmodules": [
-		"./scripts/init.js"
-	],
-	"relationships": {
-		"requires": [
-			{
-				"id": "scene-packer",
-				"type": "module",
-				"manifest": "https://github.com/League-of-Foundry-Developers/scene-packer/releases/latest/download/module.json"
-			}
-		]
-	},	
-	"url": "https://github.com/webmaster94/Waterdeep-City-of-Splendors",
-	"manifest": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/latest/download/module.json",
-	"download": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/download/v1.4/Waterdeep-City-of-Splendors.zip"
+    "id": "Waterdeep-City-of-Splendors",
+    "title": "Waterdeep - City of Splendors",
+    "description": "A full Waterdeep map with all locations as presented by https://www.aidedd.org/",
+    "version": "3.0",
+    "compatibility": {
+        "minimum": "12",
+        "verified": "12"
+    },
+    "authors": [
+        {
+            "name": "Gage Eakins"
+        }
+    ],
+    "packs": [
+        {
+            "name": "maps",
+            "label": "Waterdeep - City of Splendors",
+            "path": "/packs/maps",
+            "type": "Scene",
+            "module": "Waterdeep-City-of-Splendors"
+        },
+        {
+            "name": "journals",
+            "label": "Waterdeep - City of Splendors",
+            "path": "/packs/journals",
+            "type": "JournalEntry",
+            "module": "Waterdeep-City-of-Splendors"
+        }
+    ],
+    "esmodules": [
+        "./scripts/init.js",
+        "./scripts/waterdeep.js"
+    ],
+    "relationships": {
+        "requires": [
+            {
+                "id": "scene-packer",
+                "type": "module",
+                "manifest": "https://github.com/League-of-Foundry-Developers/scene-packer/releases/latest/download/module.json"
+            }
+        ]
+    },
+    "url": "https://github.com/webmaster94/Waterdeep-City-of-Splendors",
+    "manifest": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/latest/download/module.json",
+    "download": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/download/v3.0/Waterdeep-City-of-Splendors.zip"
 }
