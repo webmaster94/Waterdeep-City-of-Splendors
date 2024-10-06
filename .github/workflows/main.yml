@@ -32,14 +32,23 @@
 
 name: Create Module Files For GitHub Release
 
+# Define the triggers for the workflow
+on:
+  push:
+    branches:
+      - main  # Run on push to the main branch
+  pull_request:
+    branches:
+      - main  # Run on pull requests to the main branch
+  release:
+    types:
+      - published  # Run when a new release is published
+
 env:
   # The URL used for the module's "Project URL" link on FoundryVTT's website.
   project_url: "https://github.com/${{github.repository}}"
 
   # A URL that will always point to the latest manifest.
-  # FoundryVTT uses this URL to check whether the current module version that
-  # is installed is the latest version. This URL should NOT change,
-  # otherwise FoundryVTT won't be able to perform this check.
   latest_manifest_url: "https://github.com/${{github.repository}}/releases/latest/download/module.json"
 
   # The URL used for FoundryVTT to download the latest module archive file.
