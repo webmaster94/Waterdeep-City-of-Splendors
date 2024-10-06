@@ -29,77 +29,81 @@
 #
 #   - Has the module's entry on FoundryVTT's module administration site
 #     (https://foundryvtt.com/admin) been updated?
-
+#
 name: Create Module Files For GitHub Release
-
-# Define the triggers for the workflow
-on:
-  release:
-    types:
-      - published  # Run when a new release is published
 
 env:
   # The URL used for the module's "Project URL" link on FoundryVTT's website.
   project_url: "https://github.com/${{github.repository}}"
 
   # A URL that will always point to the latest manifest.
+  # FoundryVTT uses this URL to check whether the current module version that
+  # is installed is the latest version. This URL should NOT change,
+  # otherwise FoundryVTT won't be able to perform this check.
   latest_manifest_url: "https://github.com/${{github.repository}}/releases/latest/download/module.json"
 
-  # The URL used for FoundryVTT to download the latest module archive file.
+  # The URL to the module archive associated with the module release being
+  # processed by this workflow.
   release_module_url: "https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.zip"
+
+on:
+  # Only run this workflow when a release is published.
+  release:
+    types: [published]
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3  # Updated to use latest Node.js support
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js  # Set up a Node.js environment
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      # Extract version embedded in the tag.
+      - name: Extract Version From Tag
+        id: get_version
+        uses: battila7/get-version-action@v2
 
-    - name: Get version
-      id: version
-      uses: battila7/get-version-action@v2  # Use version 2 as v3 doesn't exist
-      with:
-        file: 'module.json'
+      # Modify "module.json" with values specific to the release.
+      - name: Modify Module Manifest With Release-Specific Values
+        id: sub_manifest_link_version
+        uses: cschleiden/replace-tokens@v1
+        with:
+          files: 'module.json'
+        env:
+          VERSION: ${{steps.get_version.outputs.version-without-v}}
+          URL: ${{ env.project_url }}
+          MANIFEST: ${{ env.latest_manifest_url }}
+          DOWNLOAD: ${{ env.release_module_url }}
 
-    - name: Create Module Archive  # Create the zip file with all necessary contents
-      run: |
-        zip --recurse-paths waterdeep-city-of-splendors.zip \
-          module.json \
-          README.md \
-          LICENSE \
-          images/ \
-          scripts/ \
-          packs/
-      shell: bash  # Set shell to bash
+      # Create a "module.zip" archive containing all the module's required files.
+      - name: Create Module Archive
+        run: |
+          # Note that `zip` will only emit warnings when a file or directory
+          # doesn't exist, it will not fail.
+          zip                                    \
+            --recurse-paths                      \
+            ./module.zip                         \
+            module.json                          \
+            README.md                            \
+            LICENSE                              \
+            CONTRIBUTORS.md                      \
+            images/                              \
+            packs/                               \
+            scripts/
 
-    - name: Upload release artifact  # Upload the zip file as an artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: waterdeep-city-of-splendors
-        path: waterdeep-city-of-splendors.zip
-
-    - name: Set environment file for version  # Store version for later use
-      run: echo "version=${{ steps.version.outputs.version }}" >> $GITHUB_ENV
-
-    - name: Update Release With Files  # Update the GitHub release with the manifest and zip
-      id: create_version_release
-      uses: ncipollo/release-action@v1
-      with:
-        allowUpdates: true
-        name: ${{ github.event.release.name }}
-        draft: ${{ github.event.release.unpublished }}
-        prerelease: ${{ github.event.release.prerelease }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: './module.json, ./module.zip'
-        tag: ${{ github.event.release.tag_name }}
-        body: ${{ github.event.release.body }}
-
-    - name: Notify on version bump  # Notify version bump log
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: echo "Released Waterdeep City of Splendors v${{ env.version }}"
+      # Update the GitHub release with the manifest and module archive files.
+      - name: Update Release With Files
+        id: create_version_release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          name: ${{ github.event.release.name }}
+          draft: ${{ github.event.release.unpublished }}
+          prerelease: ${{ github.event.release.prerelease }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: './module.json, ./module.zip'
+          tag: ${{ github.event.release.tag_name }}
+          body: ${{ github.event.release.body }}
