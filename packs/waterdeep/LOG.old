@@ -1,0 +1,8 @@
+2024/10/06-10:20:45.150 42ac Recovering log #4
+2024/10/06-10:20:45.159 42ac Delete type=0 #4
+2024/10/06-10:20:45.160 42ac Delete type=3 #2
+2024/10/06-10:25:30.900 2fa0 Level-0 table #9: started
+2024/10/06-10:25:30.900 2fa0 Level-0 table #9: 0 bytes OK
+2024/10/06-10:25:30.902 2fa0 Delete type=0 #7
+2024/10/06-10:25:30.902 2fa0 Manual compaction at level-0 from '!adventures!ytADHr7t5RxgTrDU' @ 72057594037927935 : 1 .. '!adventures!ytADHr7t5RxgTrDU' @ 0 : 0; will stop at (end)
+2024/10/06-10:25:30.902 2fa0 Manual compaction at level-1 from '!adventures!ytADHr7t5RxgTrDU' @ 72057594037927935 : 1 .. '!adventures!ytADHr7t5RxgTrDU' @ 0 : 0; will stop at (end)
