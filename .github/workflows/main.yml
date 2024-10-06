@@ -34,12 +34,6 @@ name: Create Module Files For GitHub Release
 
 # Define the triggers for the workflow
 on:
-  push:
-    branches:
-      - main  # Run on push to the main branch
-  pull_request:
-    branches:
-      - main  # Run on pull requests to the main branch
   release:
     types:
       - published  # Run when a new release is published
@@ -69,7 +63,7 @@ jobs:
 
     - name: Get version
       id: version
-      uses: battila7/get-version-action@v3  # Updated to support Node.js 20
+      uses: battila7/get-version-action@v2  # Use version 2 as v3 doesn't exist
       with:
         file: 'module.json'
 
