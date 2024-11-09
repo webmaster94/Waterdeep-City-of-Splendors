@@ -1,7 +1,7 @@
 {
-  "id": "waterdeep-city-of-splendors",
+  "id": "Waterdeep-City-of-Splendors",
   "title": "Waterdeep - City of Splendors",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "compatibility": {
     "minimum": "11",
     "verified": "12",
@@ -10,8 +10,8 @@
   "description": "A full Waterdeep map with all locations as presented by https://www.aidedd.org/",
   "authors": [
     {
-      "name": "Gage Eakins",
-      "url": "https://github.com/webmaster94",
+      "name": "Armand Soulliard",
+      "url": "https://github.com/asoulliard",
       "flags": {}
     }
   ],
@@ -28,7 +28,10 @@
       "flags": {}
     }
   ],
-  "url": "https://github.com/webmaster94/Waterdeep-City-of-Splendors",
-  "manifest": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/latest/download/module.json",
-  "download": "https://github.com/webmaster94/Waterdeep-City-of-Splendors/releases/latest/download/module.zip"
+  "esmodules": [
+  "scripts/waterdeep.js"
+],
+  "url": "https://github.com/asoulliard/Waterdeep-City-of-Splendors",
+  "manifest": "https://github.com/asoulliard/Waterdeep-City-of-Splendors/releases/latest/download/module.json",
+  "download": "https://github.com/asoulliard/Waterdeep-City-of-Splendors/releases/latest/download/module.zip"
 }
