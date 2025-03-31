@@ -1,11 +1,11 @@
 {
   "id": "waterdeep-city-of-splendors",
   "title": "Waterdeep - City of Splendors",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "compatibility": {
-    "minimum": "11",
-    "verified": "12",
-    "maximum": "12"
+    "minimum": "12",
+    "verified": "13",
+    "maximum": "13"
   },
   "description": "A full Waterdeep map with all locations as presented by https://www.aidedd.org/",
   "authors": [

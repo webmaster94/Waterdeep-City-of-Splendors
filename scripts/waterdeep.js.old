@@ -585,51 +585,48 @@ async function addData(folderId, icon, data) {
 }
 
 Hooks.on("canvasReady", async () => {
-    console.log("Foundry VTT is ready, running setup...");
-  
-    try {
-      const folderNames = [
-        "City Buildings",
-        "Inns & Taverns",
-        "Temples",
-        "Guildhalls",
-        "Businesses",
-        "Warehouses",
-        "Noble Villas",
-        "Places & Streets",
-        "Misc"
-      ];
-  
-      const foldersArray = getFolderIdsByNames(folderNames);
-      console.log("Folder IDs retrieved:", foldersArray);
-  
-      const dataMap = {
-        "City Buildings": { icon: "icons/svg/castle.svg", data: cityBuildings },
-        "Inns & Taverns": { icon: "icons/svg/tankard.svg", data: innsTaverns },
-        "Temples": { icon: "icons/svg/temple.svg", data: temples },
-        "Guildhalls": { icon: "icons/svg/chest.svg", data: guildHalls },
-        "Businesses": { icon: "icons/svg/hanging-sign.svg", data: businesses },
-        "Warehouses": { icon: "icons/svg/barrel.svg", data: warehouses },
-        "Noble Villas": { icon: "icons/svg/house.svg", data: nobleVillas },
-        "Places & Streets": { icon: "icons/svg/bridge.svg", data: placesAndStreets },
-        "Misc": { icon: "icons/svg/city.svg", data: misc }
-      };
-  
-      // Iterate over each folder and add/update corresponding data
-      for (const folderName of folderNames) {
-        const folderId = getIdByName(folderName, foldersArray);
-        if (folderId) {
-          const { icon, data } = dataMap[folderName];
-          await addData(folderId, icon, data);
-        } else {
-          console.warn(`Folder '${folderName}' not found in the foldersArray.`);
-        }
+  console.log("Foundry VTT is ready, running setup...");
+
+  try {
+    const folderNames = [
+      "City Buildings",
+      "Inns & Taverns",
+      "Temples",
+      "Guildhalls",
+      "Businesses",
+      "Warehouses",
+      "Noble Villas",
+      "Misc"
+    ];
+
+    const foldersArray = getFolderIdsByNames(folderNames);
+    console.log("Folder IDs retrieved:", foldersArray);
+
+    const dataMap = {
+      "City Buildings": { icon: "icons/svg/castle.svg", data: cityBuildings },
+      "Inns & Taverns": { icon: "icons/svg/tankard.svg", data: innsTaverns },
+      "Temples": { icon: "icons/svg/temple.svg", data: temples },
+      "Guildhalls": { icon: "icons/svg/chest.svg", data: guildHalls },
+      "Businesses": { icon: "icons/svg/hanging-sign.svg", data: businesses },
+      "Warehouses": { icon: "icons/svg/barrel.svg", data: warehouses },
+      "Noble Villas": { icon: "icons/svg/house.svg", data: nobleVillas },
+      "Misc": { icon: "icons/svg/city.svg", data: misc }
+    };
+
+    // Iterate over each folder and add/update corresponding data
+    for (const folderName of folderNames) {
+      const folderId = getIdByName(folderName, foldersArray);
+      if (folderId) {
+        const { icon, data } = dataMap[folderName];
+        await addData(folderId, icon, data);
+      } else {
+        console.warn(`Folder '${folderName}' not found in the foldersArray.`);
       }
-  
-      console.log("Setup completed successfully.");
-    } catch (error) {
-      console.error("Error during setup:", error);
     }
-  });
-  
+
+    console.log("Setup completed successfully.");
+  } catch (error) {
+    console.error("Error during setup:", error);
+  }
+});
 
